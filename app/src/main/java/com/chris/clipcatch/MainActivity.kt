@@ -139,6 +139,13 @@ class MainActivity : ComponentActivity() {
                                             request.addOption("--merge-output-format", "mp4")
                                         }
 
+                                        // Refresh yt-dlp before downloading so the bundled copy cannot go stale.
+                                        runOnUiThread { status = "Checking for yt-dlp updates…" }
+                                        YoutubeDL.getInstance().updateYoutubeDL(
+                                            this@MainActivity,
+                                            YoutubeDL.UpdateChannel.STABLE
+                                        )
+
                                         YoutubeDL.getInstance().execute(request) { percent, eta, _ ->
                                             runOnUiThread {
                                                 progress = (percent / 100f).coerceIn(0f, 1f)
