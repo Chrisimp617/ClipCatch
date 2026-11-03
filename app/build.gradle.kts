@@ -23,6 +23,12 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    defaultConfig {
+        ndk {
+            abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
+        }
+    }
+
     packaging {
         jniLibs {
             useLegacyPackaging = true
