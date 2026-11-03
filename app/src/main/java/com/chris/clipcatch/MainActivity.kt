@@ -139,7 +139,7 @@ class MainActivity : ComponentActivity() {
                                             request.addOption("--merge-output-format", "mp4")
                                         }
 
-                                        YoutubeDL.getInstance().execute(request) { percent, eta ->
+                                        YoutubeDL.getInstance().execute(request) { percent, eta, _ ->
                                             runOnUiThread {
                                                 progress = (percent / 100f).coerceIn(0f, 1f)
                                                 status = "Downloading… ${percent.toInt()}%  •  ETA ${eta}s"
